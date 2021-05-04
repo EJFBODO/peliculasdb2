@@ -1,0 +1,30 @@
+*listar todos los actores mayores de 21 años
+SELECT * FROM actores WHERE edad>21;
+*listar todos los actores M/F , (contar)
+SELECT * FROM actores WHERE Idsexo=1;
+SELECT * FROM actores WHERE Idsexo=2;
+SELECT COUNT(Idsexo) from actores WHERE Idsexo=1;
+SELECT COUNT(Idsexo) from actores WHERE Idsexo=2;
+*listar todas las peliculas en la que trabajo el actor con id 3
+SELECT nombrePelicula FROM peliculas INNER JOIN peliculas_has_actores WHERE peliculas_has_actores.actores_idActores=3 AND peliculas.idPeliculas=peliculas_has_actores.peliculas_idPeliculas;
+*listar todos los actores de la pelicula con id 6
+SELECT nombreActor FROM actores INNER JOIN peliculas_has_actores WHERE peliculas_has_actores.peliculas_idPeliculas=6 AND actores.IdActores=peliculas_has_actores.actores_idActores;
+*modificar el nombre del actor 3
+SELECT nombreActor FROM actores WHERE idActores=3;
+UPDATE actores SET nombreActor='Al Pacino' WHERE idActores=3;
+*modificar el genero de una pelicula
+SELECT genero FROM peliculas WHERE IdPeliculas=6;
+UPDATE peliculas SET genero='Mafia' WHERE idPeliculas=6;
+*modificar nacionalidad actor 4
+SELECT IdPaisorigen FROM actores WHERE Idactores=4;
+UPDATE actores SET idPaisorigen=3 WHERE Idactores=4;
+*eliminar un actor
+SELECT nombreActor FROM actores;
+DELETE FROM actores WHERE nombreActor='Mel Gibson';
+*eliminar una pelicula
+SELECT nombrePelicula FROM peliculas;
+DELETE FROM peliculas WHERE nombrePelicula='Apocalypse now';
+*insertar una pelicula
+INSERT INTO peliculas (nombrePelicula,genero,añoEstreno,nombreDirector,IdPaisOrigen) VALUES ('Falling Down','Accion','1993','Joel Schumacher',1);
+*insertar una actor
+INSERT INTO actores (nombreActor,edad,idSexo,IdPaisorigen) VALUES ('Leonardo Dicaprio',46,'1',1);
